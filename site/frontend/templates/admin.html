@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>नेपाली सिकौं - Admin Panel</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>नेपाली Admin</h2>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="#" class="menu-item active" data-section="phrases">Manage Phrases</a>
+                <a href="#" class="menu-item" data-section="alphabet">Manage Alphabet</a>
+                <a href="/" class="menu-item">Back to Site</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Header -->
+            <header class="admin-header">
+                <h1>Administration Panel</h1>
+                <p>Manage your Nepali learning platform content</p>
+            </header>
+
+            <!-- Phrases Section -->
+            <section id="phrases-section" class="admin-section active">
+                <div class="section-header">
+                    <h2>Manage Phrases</h2>
+                    <button class="btn btn-primary" id="add-phrase-btn">+ Add New Phrase</button>
+                </div>
+
+                <div class="content-area">
+                    <div class="search-bar">
+                        <input type="text" id="phrase-search" placeholder="Search phrases...">
+                        <select id="phrase-category-filter">
+                            <option value="">All Categories</option>
+                        </select>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Nepali (नेपाली)</th>
+                                    <th>Romanized</th>
+                                    <th>English</th>
+                                    <th>Category</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="phrases-table-body">
+                                <tr>
+                                    <td colspan="5" class="text-center">Loading phrases...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Alphabet Section -->
+            <section id="alphabet-section" class="admin-section">
+                <div class="section-header">
+                    <h2>Manage Alphabet</h2>
+                    <button class="btn btn-primary" id="add-letter-btn">+ Add New Letter</button>
+                </div>
+
+                <div class="content-area">
+                    <div class="search-bar">
+                        <input type="text" id="alphabet-search" placeholder="Search letters...">
+                        <select id="letter-type-filter">
+                            <option value="">All Types</option>
+                            <option value="vowel">Vowels</option>
+                            <option value="consonant">Consonants</option>
+                        </select>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Devanagari</th>
+                                    <th>Romanized</th>
+                                    <th>Type</th>
+                                    <th>Pronunciation</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="alphabet-table-body">
+                                <tr>
+                                    <td colspan="5" class="text-center">Loading alphabet...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for Adding/Editing Phrase -->
+    <div id="phrase-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Add New Phrase</h2>
+            <form id="phrase-form">
+                <div class="form-group">
+                    <label for="phrase-nepali">Nepali Text:</label>
+                    <input type="text" id="phrase-nepali" required>
+                </div>
+                <div class="form-group">
+                    <label for="phrase-romanized">Romanized:</label>
+                    <input type="text" id="phrase-romanized" required>
+                </div>
+                <div class="form-group">
+                    <label for="phrase-english">English Translation:</label>
+                    <input type="text" id="phrase-english" required>
+                </div>
+                <div class="form-group">
+                    <label for="phrase-category">Category:</label>
+                    <select id="phrase-category" required>
+                        <option value="">Select Category</option>
+                        <option value="greetings">Greetings</option>
+                        <option value="emergency">Emergency</option>
+                        <option value="food">Food</option>
+                        <option value="directions">Directions</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Phrase</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for Adding/Editing Letter -->
+    <div id="letter-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Letter</h2>
+            <form id="letter-form">
+                <div class="form-group">
+                    <label for="letter-devanagari">Devanagari:</label>
+                    <input type="text" id="letter-devanagari" required>
+                </div>
+                <div class="form-group">
+                    <label for="letter-romanized">Romanized:</label>
+                    <input type="text" id="letter-romanized" required>
+                </div>
+                <div class="form-group">
+                    <label for="letter-type">Type:</label>
+                    <select id="letter-type" required>
+                        <option value="">Select Type</option>
+                        <option value="vowel">Vowel</option>
+                        <option value="consonant">Consonant</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="letter-pronunciation">Pronunciation:</label>
+                    <input type="text" id="letter-pronunciation">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="letter-modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Letter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/js/admin.js"></script>
+</body>
+</html>
