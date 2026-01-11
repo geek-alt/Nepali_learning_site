@@ -1,0 +1,557 @@
+Nepali Learning Platform - Complete Directory Tree
+================================================
+
+Codefolder/
+│
+├── site/                                    # Main project directory
+│   │
+│   ├── backend/                             # Flask backend application
+│   │   ├── app.py                           # Main Flask application entry point
+│   │   ├── database.py                      # Database initialization and configuration
+│   │   ├── models.py                        # SQLAlchemy database models (User, Alphabet, Dictionary, Phrase, Video)
+│   │   ├── validation.py                    # Input validation and sanitization functions
+│   │   │
+│   │   ├── routes/                          # API route handlers (blueprints)
+│   │   │   ├── __init__.py
+│   │   │   ├── alphabet.py                  # Alphabet CRUD operations and reordering
+│   │   │   ├── auth.py                      # User authentication and session management
+│   │   │   ├── bulk_upload.py               # CSV bulk upload for dictionary and phrases
+│   │   │   ├── dictionary.py                # Dictionary CRUD, search, pagination, reordering
+│   │   │   ├── phrases.py                   # Phrases CRUD and category filtering
+│   │   │   ├── resources.py                 # Video resources management
+│   │   │   ├── transliterator.py            # Text transliteration engine
+│   │   │   └── __pycache__/                 # Python bytecode cache
+│   │   │
+│   │   ├── instance/                        # Instance-specific files
+│   │   │   └── nepali_learning.db           # SQLite database file
+│   │   │
+│   │   ├── __pycache__/                     # Python bytecode cache
+│   │   │
+│   │   └── Utility Scripts:
+│   │       ├── check_categories.py          # Verify phrase categories
+│   │       ├── check_db.py                  # Database inspection tool
+│   │       ├── clean_junk_data.py           # Database cleanup script
+│   │       ├── clear_videos.py              # Remove all video entries
+│   │       ├── migrate_add_dictionary_order.py  # Migration: Add order_index to dictionary
+│   │       ├── migrate_add_phrase_fields.py # Migration: Add fields to phrases table
+│   │       ├── sync_alphabet_to_dict.py     # Sync alphabet data to dictionary
+│   │       └── test_filters.py              # Test filtering functionality
+│   │
+│   ├── frontend/                            # Frontend assets and templates
+│   │   │
+│   │   ├── templates/                       # HTML templates
+│   │   │   ├── index.html                   # Public homepage (alphabet, dictionary, phrases, transliterator, videos)
+│   │   │   ├── admin.html                   # Admin dashboard (content management)
+│   │   │   └── login.html                   # Login page
+│   │   │
+│   │   └── static/                          # Static assets
+│   │       ├── css/                         # Stylesheets
+│   │       │   ├── style.css                # Main public page styles
+│   │       │   └── admin.css                # Admin dashboard styles
+│   │       │
+│   │       └── js/                          # JavaScript files
+│   │           ├── app.js                   # Public page logic (API calls, UI interactions)
+│   │           └── admin.js                 # Admin panel logic (CRUD, drag-drop, bulk upload)
+│   │
+│   ├── resources/                           # Data resources and seed files
+│   │   ├── complete_alphabet.csv            # Nepali alphabet data (36 characters)
+│   │   ├── dictionary_100_words.csv         # Sample dictionary entries
+│   │   ├── phrases_100.csv                  # Sample phrases with translations
+│   │   ├── nepali_videos_verified.csv       # Verified YouTube video links
+│   │   ├── youtube_videos_20.csv            # Additional video resources
+│   │   ├── youtube_videos_updated.csv       # Updated video metadata
+│   │   └── upload_all.py                    # Script to bulk upload all CSV data
+│   │
+│   ├── Documentation Files:
+│   │   ├── PROJECT_DOCUMENTATION.md         # Complete project documentation (this file)
+│   │   ├── PROJECT_TREE.txt                 # Directory structure (you are here)
+│   │   ├── README.md                        # Project overview and quick start
+│   │   ├── API_REFERENCE.md                 # API endpoint documentation
+│   │   ├── QUICKSTART.txt                   # Quick start guide
+│   │   ├── IMPLEMENTATION_GUIDE.md          # Implementation details
+│   │   ├── IMPLEMENTATION_CHECKLIST.md      # Feature checklist
+│   │   ├── BULK_UPLOAD_GUIDE.md             # CSV bulk upload instructions
+│   │   ├── V2_SUMMARY.md                    # Version 2 features summary
+│   │   │
+│   │   └── Security Documentation:
+│   │       ├── SECURITY_COMPLETE.md         # Security implementation summary
+│   │       ├── SECURITY_IMPLEMENTATION.md   # Detailed security measures
+│   │       ├── SECURITY_QUICK_REF.md        # Quick security reference
+│   │       └── SECURITY_TESTING_GUIDE.md    # Security testing procedures
+│   │
+│   ├── Configuration Files:
+│   │   ├── requirements.txt                 # Python package dependencies
+│   │   ├── .env                             # Environment variables (gitignored)
+│   │   ├── .gitignore                       # Git ignore patterns
+│   │   └── index.html                       # Root index redirect (if needed)
+│   │
+│   ├── Utility Scripts:
+│   │   ├── script.py                        # General utility script
+│   │   ├── security_audit.py                # Security audit tool
+│   │   └── ssh-key-2026-01-11.key          # SSH key for Oracle Cloud (gitignored)
+│   │
+│   └── Deployment Files:
+│       ├── flask.log                        # Flask application logs (on server)
+│       ├── nohup.out                        # Background process output (on server)
+│       └── nginx.conf                       # Nginx configuration (on server)
+│
+├── nepalisite/                              # Python virtual environment (local development)
+│   ├── pyvenv.cfg                           # Virtual environment configuration
+│   ├── Scripts/                             # Windows: Activation scripts and executables
+│   │   ├── activate
+│   │   ├── activate.bat
+│   │   ├── Activate.ps1
+│   │   ├── deactivate.bat
+│   │   ├── python.exe
+│   │   └── pip.exe
+│   │
+│   ├── Lib/                                 # Python libraries
+│   │   └── site-packages/                   # Installed packages
+│   │       ├── flask/
+│   │       ├── flask_cors/
+│   │       ├── flask_login/
+│   │       ├── flask_sqlalchemy/
+│   │       ├── flask_wtf/
+│   │       ├── flask_limiter/
+│   │       ├── flask_talisman/
+│   │       ├── sqlalchemy/
+│   │       ├── argon2/
+│   │       ├── bleach/
+│   │       ├── marshmallow/
+│   │       ├── email_validator/
+│   │       └── ... (other dependencies)
+│   │
+│   └── Include/                             # C headers for extensions
+│
+├── Documentation (Root Level):
+│   ├── ADMIN_FEATURES_COMPLETE.md           # Admin features documentation
+│   ├── ADMIN_PANEL_FIXES.md                 # Admin panel bug fixes log
+│   ├── CONTENT_VISIBLE.md                   # Content visibility fixes
+│   ├── DEPLOYMENT_GUIDE.md                  # Deployment instructions
+│   ├── DICTIONARY_DRAG_DROP_COMPLETE.md     # Drag-drop feature documentation
+│   ├── ORACLE_CLOUD_SETUP.md                # Oracle Cloud setup guide
+│   ├── QUICK_START.md                       # Quick start guide
+│   ├── SECURITY_AUDIT_REPORT.md             # Security audit results
+│   ├── security_path.md                     # Security implementation path
+│   ├── UPGRADE_COMPLETE.md                  # Upgrade notes
+│   └── new_updates.md                       # Recent updates log
+│
+├── Utility Scripts (Root Level):
+│   ├── check_dict.py                        # Dictionary validation script
+│   └── test_admin_api.py                    # Admin API testing script
+│
+└── SSH Keys:
+    ├── ssh-key-2026-01-10.key              # Oracle Cloud SSH key (old)
+    └── ssh-key-2026-01-11.key              # Oracle Cloud SSH key (current)
+
+
+===============================================
+FILE DESCRIPTIONS BY CATEGORY
+===============================================
+
+CORE APPLICATION FILES
+----------------------
+✓ backend/app.py                    - Flask app initialization, CORS, security middleware, blueprint registration
+✓ backend/database.py                - SQLAlchemy database setup and session management
+✓ backend/models.py                  - Database models: User, Alphabet, Dictionary, Phrase, Video
+✓ backend/validation.py              - Input sanitization, validation functions, XSS prevention
+
+API ROUTE HANDLERS
+------------------
+✓ routes/auth.py                     - POST /api/auth/login, /logout, /register, /profile
+✓ routes/alphabet.py                 - GET/POST/PUT/DELETE /api/alphabet/, POST /api/alphabet/reorder
+✓ routes/dictionary.py               - GET/POST/PUT/DELETE /api/dictionary/, /search, /reorder
+✓ routes/phrases.py                  - GET/POST/PUT/DELETE /api/phrases/, /category/<cat>
+✓ routes/resources.py                - GET/POST/DELETE /api/resources/videos
+✓ routes/transliterator.py           - GET /api/transliterator/rules, POST /convert
+✓ routes/bulk_upload.py              - POST /api/bulk/dictionary, /api/bulk/phrases
+
+FRONTEND FILES
+--------------
+✓ templates/index.html               - Public homepage with tabs (alphabet, dictionary, phrases, etc.)
+✓ templates/admin.html               - Admin dashboard for content management
+✓ templates/login.html               - User login page with CSRF protection
+✓ static/css/style.css               - Public page styling, responsive design
+✓ static/css/admin.css               - Admin panel styling, drag-drop UI
+✓ static/js/app.js                   - Public page JavaScript (API calls, pagination, search)
+✓ static/js/admin.js                 - Admin JavaScript (CRUD operations, drag-drop, bulk upload)
+
+DATA & RESOURCES
+----------------
+✓ resources/complete_alphabet.csv          - 36 Nepali characters with transliterations
+✓ resources/dictionary_100_words.csv       - English-Nepali word pairs
+✓ resources/phrases_100.csv                - Common phrases with translations
+✓ resources/nepali_videos_verified.csv     - YouTube educational videos
+✓ resources/upload_all.py                  - Script to seed database from CSVs
+
+DATABASE
+--------
+✓ backend/instance/nepali_learning.db      - SQLite database (production/development)
+  Tables:
+  - users              (authentication, roles, session tracking)
+  - alphabet           (Nepali characters, transliterations)
+  - dictionary         (English-Nepali word pairs)
+  - phrases            (common phrases, categories)
+  - videos             (YouTube resources)
+
+CONFIGURATION
+-------------
+✓ requirements.txt                   - Python dependencies (Flask, SQLAlchemy, security libs)
+✓ .env                               - Environment variables (SECRET_KEY, DATABASE_URL, ALLOWED_ORIGINS)
+✓ .gitignore                         - Ignore patterns (venv, .env, *.db, __pycache__, SSH keys)
+
+UTILITY SCRIPTS
+---------------
+✓ backend/check_db.py                - Inspect database contents
+✓ backend/clean_junk_data.py         - Remove test/invalid data
+✓ backend/clear_videos.py            - Bulk delete videos
+✓ backend/check_categories.py        - Validate phrase categories
+✓ backend/migrate_*.py               - Database migration scripts
+✓ backend/sync_alphabet_to_dict.py   - Sync alphabet data
+✓ backend/test_filters.py            - Test filtering logic
+✓ script.py                          - General utility functions
+✓ security_audit.py                  - Security vulnerability scanner
+✓ check_dict.py                      - Dictionary validation
+✓ test_admin_api.py                  - API endpoint testing
+
+DOCUMENTATION
+-------------
+✓ PROJECT_DOCUMENTATION.md           - Complete technical documentation (70+ pages)
+✓ PROJECT_TREE.txt                   - This file (directory structure)
+✓ README.md                          - Project overview, installation, usage
+✓ API_REFERENCE.md                   - All API endpoints with examples
+✓ IMPLEMENTATION_GUIDE.md            - Feature implementation details
+✓ BULK_UPLOAD_GUIDE.md               - CSV upload instructions
+✓ SECURITY_IMPLEMENTATION.md         - Security measures documentation
+✓ DEPLOYMENT_GUIDE.md                - Oracle Cloud deployment steps
+✓ ORACLE_CLOUD_SETUP.md              - Cloud infrastructure setup
+
+SECURITY FILES
+--------------
+✓ ssh-key-2026-01-10.key            - Oracle Cloud VM SSH key (old)
+✓ ssh-key-2026-01-11.key            - Oracle Cloud VM SSH key (current)
+✓ backend/.env                       - Secret keys, database URL (NEVER commit to git)
+
+
+===============================================
+TECHNOLOGY STACK
+===============================================
+
+Backend (Python)
+----------------
+• Flask 2.3.3                 - Web framework
+• SQLAlchemy 2.0.23           - ORM
+• Flask-Login 0.6.3           - Session management
+• Flask-WTF 1.2.2             - CSRF protection
+• Flask-CORS 4.0.0            - Cross-origin requests
+• Flask-Limiter 4.1.1         - Rate limiting
+• Flask-Talisman 1.1.0        - Security headers
+• Argon2-cffi 25.1.0          - Password hashing
+• Bleach 6.3.0                - HTML sanitization
+• Marshmallow 4.2.0           - Validation
+
+Frontend
+--------
+• HTML5 + CSS3                - Structure and styling
+• JavaScript (Vanilla ES6+)   - Client-side logic
+• Fetch API                   - AJAX requests
+• SortableJS                  - Drag-and-drop
+
+Database
+--------
+• SQLite (Development)        - Embedded database
+• PostgreSQL (Production)     - Scalable option
+
+Deployment
+----------
+• Oracle Cloud Free Tier      - VM hosting
+• Oracle Linux 9              - Operating system
+• Nginx                       - Reverse proxy
+• Gunicorn                    - WSGI server
+• systemd                     - Process management
+• Cloudflare                  - CDN, SSL, DDoS protection
+
+
+===============================================
+DEPLOYMENT STRUCTURE (Oracle VM)
+===============================================
+
+/home/opc/
+├── site/                                    # Deployed application
+│   ├── backend/
+│   │   ├── app.py
+│   │   ├── models.py
+│   │   ├── routes/
+│   │   ├── venv/                            # Python virtual environment
+│   │   │   ├── bin/
+│   │   │   │   ├── activate
+│   │   │   │   ├── python
+│   │   │   │   └── pip
+│   │   │   └── lib/
+│   │   ├── .env                             # Production environment variables
+│   │   ├── flask.log                        # Application logs
+│   │   └── instance/
+│   │       └── nepali_learning.db           # Production database
+│   │
+│   └── frontend/
+│       ├── templates/
+│       └── static/
+│
+├── backup/                                  # Database backups
+│   ├── db_20260111.db
+│   └── site_20260111.tar.gz
+│
+└── logs/                                    # Additional logs
+    ├── access.log
+    └── error.log
+
+/etc/
+├── nginx/
+│   ├── nginx.conf                           # Main Nginx config
+│   └── conf.d/
+│       └── nepali-site.conf                 # Site-specific config
+│
+└── systemd/system/
+    └── nepali-site.service                  # Systemd service file
+
+/var/log/
+├── nginx/
+│   ├── access.log                           # Nginx access logs
+│   └── error.log                            # Nginx error logs
+│
+└── messages                                 # System logs
+
+
+===============================================
+GIT REPOSITORY STRUCTURE (Recommended)
+===============================================
+
+.gitignore should include:
+--------------------------
+# Virtual environments
+nepalisite/
+venv/
+env/
+*.pyc
+__pycache__/
+
+# Environment files
+.env
+*.env
+.env.*
+
+# Database files
+*.db
+*.sqlite3
+instance/
+
+# Logs
+*.log
+nohup.out
+
+# SSH keys
+*.key
+*.pem
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Backup files
+backup/
+*.bak
+*~
+
+
+===============================================
+KEY DIRECTORIES TO BACKUP
+===============================================
+
+Critical Data:
+--------------
+✓ backend/instance/nepali_learning.db        - Main database
+✓ backend/.env                               - Environment config
+✓ resources/*.csv                            - Seed data
+✓ PROJECT_DOCUMENTATION.md                   - Documentation
+
+Code:
+-----
+✓ backend/app.py, models.py, validation.py
+✓ backend/routes/*.py
+✓ frontend/templates/*.html
+✓ frontend/static/css/*.css
+✓ frontend/static/js/*.js
+
+
+===============================================
+DEPLOYMENT CHECKLIST
+===============================================
+
+Pre-Deployment:
+--------------
+☑ Update .env with production values
+☑ Change SECRET_KEY to strong random key
+☑ Set FLASK_ENV=production
+☑ Update ALLOWED_ORIGINS to production domain
+☑ Test all features locally
+☑ Run security audit
+☑ Database migrations completed
+☑ Create database backup
+
+Deployment:
+----------
+☑ Upload files to server via SCP
+☑ Create virtual environment
+☑ Install dependencies (pip install --no-cache-dir)
+☑ Initialize database (db.create_all())
+☑ Create admin user
+☑ Test Flask server (python app.py)
+☑ Configure Nginx reverse proxy
+☑ Setup SSL certificate (Cloudflare/Let's Encrypt)
+☑ Configure firewall rules
+☑ Add Oracle Cloud Security List ingress rules
+☑ Setup systemd service
+☑ Enable log rotation
+
+Post-Deployment:
+---------------
+☑ Test all API endpoints
+☑ Verify admin login
+☑ Test drag-drop functionality
+☑ Verify bulk upload
+☑ Check security headers
+☑ Monitor logs for errors
+☑ Setup automated backups
+☑ Document admin credentials
+☑ Update DNS records
+☑ Test domain access
+
+
+===============================================
+MAINTENANCE COMMANDS
+===============================================
+
+Start/Stop Services:
+-------------------
+# Start Flask (development)
+python app.py
+
+# Start Flask (background)
+nohup python app.py > flask.log 2>&1 &
+
+# Start Flask (systemd)
+sudo systemctl start nepali-site
+sudo systemctl stop nepali-site
+sudo systemctl restart nepali-site
+sudo systemctl status nepali-site
+
+# Start Nginx
+sudo systemctl start nginx
+sudo systemctl restart nginx
+
+Monitor:
+-------
+# Check running processes
+ps aux | grep python
+ps aux | grep nginx
+
+# View logs
+tail -f flask.log
+tail -f /var/log/nginx/error.log
+sudo journalctl -u nepali-site -f
+
+# Resource usage
+top
+htop
+free -m
+
+Database:
+--------
+# Backup database
+cp instance/nepali_learning.db backup/db_$(date +%Y%m%d).db
+
+# Restore database
+cp backup/db_20260111.db instance/nepali_learning.db
+
+# Access SQLite shell
+sqlite3 instance/nepali_learning.db
+
+Cleanup:
+-------
+# Clear Python cache
+find . -type d -name "__pycache__" -exec rm -rf {} +
+find . -type f -name "*.pyc" -delete
+
+# Rotate logs
+truncate -s 0 flask.log
+
+
+===============================================
+PROJECT STATISTICS
+===============================================
+
+Total Files: ~100+
+Total Lines of Code: ~15,000+
+
+Backend Python:
+- app.py:           ~240 lines
+- models.py:        ~236 lines
+- routes/*.py:      ~1,500 lines (combined)
+
+Frontend:
+- HTML:             ~1,200 lines (combined)
+- CSS:              ~1,500 lines (combined)
+- JavaScript:       ~1,800 lines (combined)
+
+Documentation:      ~5,000 lines
+
+Database Records (Estimated):
+- Alphabet:         36 characters
+- Dictionary:       100-500 words
+- Phrases:          100-200 phrases
+- Videos:           20-50 resources
+- Users:            1-10 admin/users
+
+
+===============================================
+CONTACT & SUPPORT
+===============================================
+
+Admin Panel:        http://yourdomain.com/admin
+Default Login:      admin / Admin123! (CHANGE IMMEDIATELY)
+SSH Access:         ssh -i ssh-key.key opc@<public-ip>
+Database Location:  /home/opc/site/backend/instance/nepali_learning.db
+
+
+===============================================
+VERSION HISTORY
+===============================================
+
+v1.0.0 (2026-01-11)
+-------------------
+✓ Initial release
+✓ Complete CRUD for all content types
+✓ Drag-and-drop reordering
+✓ Bulk CSV upload
+✓ User authentication and RBAC
+✓ Security hardening (CSRF, rate limiting, XSS prevention)
+✓ Deployed to Oracle Cloud
+✓ Cloudflare integration
+✓ Comprehensive documentation
+
+
+===============================================
+END OF DIRECTORY TREE
+===============================================
+
+Generated: January 11, 2026
+Project: Nepali Learning Platform
+Version: 1.0.0
+Deployed: Oracle Cloud (lerishbhandari.com.np)

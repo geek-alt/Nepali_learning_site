@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>नेपाली सिकौं - Admin Panel</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>नेपाली Admin</h1>
+                <p>Content Management</p>
+            </div>
+            <nav class="menu">
+                <a href="#" class="menu-item" data-section="manage-dictionary">✏️ Manage Dictionary</a>
+                <a href="#" class="menu-item" data-section="phrases">💬 Manage Phrases</a>
+                <a href="#" class="menu-item" data-section="alphabet">🔤 Manage Alphabet</a>
+                <a href="#" class="menu-item" data-section="videos">🎥 Manage Videos</a>
+                <a href="#" class="menu-item active" data-section="bulk-upload">📤 Bulk Upload</a>
+                <a href="/" class="menu-item" style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 1rem; padding-top: 1rem;">← Back to Site</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+
+            <!-- Phrases Section -->
+            <section id="phrases-section" class="admin-section active">
+                <div class="section-header">
+                    <h2>Manage Phrases</h2>
+                    <button class="btn btn-primary" id="add-phrase-btn">+ Add New Phrase</button>
+                </div>
+
+                <div class="content-area">
+                    <div class="search-bar">
+                        <input type="text" id="phrase-search" placeholder="Search phrases...">
+                        <select id="phrase-category-filter">
+                            <option value="">All Categories</option>
+                        </select>
+                        <select id="phrase-formality-filter">
+                            <option value="">All Formality Levels</option>
+                            <option value="casual">Casual</option>
+                            <option value="neutral">Neutral</option>
+                            <option value="formal">Formal</option>
+                        </select>
+                        <div class="alert alert-info" style="padding: 0.5rem 1rem; font-size: 0.9rem; margin-left: auto;">
+                            💡 Quick category management for phrases
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Nepali (नेपाली)</th>
+                                    <th>Romanized</th>
+                                    <th>English</th>
+                                    <th>Category</th>
+                                    <th>Context</th>
+                                    <th>Formality</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="phrases-table-body">
+                                <tr>
+                                    <td colspan="5" class="text-center">Loading phrases...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Alphabet Section -->
+            <section id="alphabet-section" class="admin-section">
+                <div class="section-header">
+                    <h2>Manage Alphabet</h2>
+                    <div class="header-actions">
+                        <button class="btn btn-success" id="save-alphabet-order-btn" style="display: none;">💾 Save Order</button>
+                        <button class="btn btn-primary" id="add-letter-btn">+ Add New Letter</button>
+                    </div>
+                </div>
+
+                <div class="content-area">
+                    <div class="search-bar">
+                        <input type="text" id="alphabet-search" placeholder="Search letters...">
+                        <select id="letter-type-filter">
+                            <option value="">All Types</option>
+                            <option value="vowel">Vowels</option>
+                            <option value="consonant">Consonants</option>
+                        </select>
+                        <div class="alert alert-info" style="padding: 0.5rem 1rem; font-size: 0.9rem; margin-left: auto;">
+                            💡 Drag rows to reorder alphabet
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table" id="alphabet-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 40px;">🔄</th>
+                                    <th>Devanagari</th>
+                                    <th>Romanized</th>
+                                    <th>Type</th>
+                                    <th>Pronunciation</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="alphabet-table-body">
+                                <tr>
+                                    <td colspan="6" class="text-center">Loading alphabet...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Manage Dictionary Section -->
+            <section id="manage-dictionary-section" class="admin-section">
+                <div class="section-header">
+                    <h2>✏️ Manage Dictionary</h2>
+                    <div class="header-actions">
+                        <button class="btn btn-success" id="save-dictionary-order-btn" style="display: none;">💾 Save Order</button>
+                        <button class="btn btn-info" id="show-statistics-btn">📊 Statistics</button>
+                        <button class="btn btn-warning" id="global-search-btn">🔍 Global Search</button>
+                        <button class="btn btn-secondary" id="bulk-operations-btn">📦 Bulk Operations</button>
+                        <button class="btn btn-primary" id="add-word-btn">+ Add New Word</button>
+                    </div>
+                </div>
+
+                <div class="content-area">
+                    <div class="search-bar">
+                        <input type="text" id="manage-dict-search" placeholder="Search words...">
+                        <select id="manage-dict-category">
+                            <option value="">All Categories</option>
+                            <option value="alphabet">Alphabet</option>
+                            <option value="family">Family</option>
+                            <option value="food">Food</option>
+                            <option value="numbers">Numbers</option>
+                            <option value="nature">Nature</option>
+                            <option value="animals">Animals</option>
+                            <option value="colors">Colors</option>
+                            <option value="verbs">Verbs</option>
+                        </select>
+                        <select id="manage-dict-difficulty">
+                            <option value="">All Levels</option>
+                            <option value="1">Beginner</option>
+                            <option value="2">Intermediate</option>
+                            <option value="3">Advanced</option>
+                        </select>
+                        <div class="alert alert-info" style="padding: 0.5rem 1rem; font-size: 0.9rem; margin-left: auto;">
+                            💡 Drag rows to reorder dictionary
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table" id="dictionary-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 40px;">🔄</th>
+                                    <th>Nepali</th>
+                                    <th>Romanized</th>
+                                    <th>English</th>
+                                    <th>Category</th>
+                                    <th>Difficulty</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="manage-dict-table-body">
+                                <tr>
+                                    <td colspan="6" class="text-center">Loading dictionary...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="manage-dict-pagination" style="text-align: center; margin-top: 20px;">
+                        <!-- Pagination buttons will be added here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Manage Videos Section -->
+            <section id="videos-section" class="admin-section">
+                <div class="section-header">
+                    <h2>🎥 Manage Videos</h2>
+                    <div class="header-actions">
+                        <button id="mass-delete-videos-btn" class="btn btn-danger" style="margin-right: 10px; display: none;">
+                            🗑️ Delete Selected (<span id="selected-videos-count">0</span>)
+                        </button>
+                        <input type="text" id="videos-search" placeholder="🔍 Search videos..." 
+                               style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.9rem;">
+                    </div>
+                </div>
+
+                <div class="stats-grid" style="margin-bottom: 1.5rem;">
+                    <div class="stat-card">
+                        <div class="stat-number" id="videos-total-count">0</div>
+                        <div class="stat-label">Total Videos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="videos-categories-count">0</div>
+                        <div class="stat-label">Categories</div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1rem;">
+                    <label style="margin-right: 10px; font-weight: 500;">Filter by Category:</label>
+                    <select id="videos-category-filter" style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+                        <option value="">All Categories</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="alphabet">Alphabet</option>
+                        <option value="numbers">Numbers</option>
+                        <option value="greetings">Greetings</option>
+                        <option value="travel">Travel</option>
+                        <option value="conversation">Conversation</option>
+                        <option value="grammar">Grammar</option>
+                        <option value="food">Food</option>
+                        <option value="family">Family</option>
+                        <option value="culture">Culture</option>
+                    </select>
+                    <label style="margin-left: 20px; margin-right: 10px; font-weight: 500;">Difficulty:</label>
+                    <select id="videos-difficulty-filter" style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+                        <option value="">All Levels</option>
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                    </select>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 50px; text-align: center;">
+                                    <input type="checkbox" id="select-all-videos" title="Select all">
+                                </th>
+                                <th style="width: 35%; min-width: 250px;">Title & Description</th>
+                                <th style="width: 140px;">YouTube ID</th>
+                                <th style="width: 120px;">Category</th>
+                                <th style="width: 100px; text-align: center;">Difficulty</th>
+                                <th style="width: 90px; text-align: center;">Duration</th>
+                                <th style="width: 80px; text-align: center;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="videos-table-body">
+                            <tr><td colspan="7" class="text-center">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Bulk Upload Section -->
+            <section id="bulk-upload-section" class="admin-section">
+                <div class="section-header">
+                    <h2>📤 Bulk Upload with CSV</h2>
+                    <p style="margin: 10px 0 0 0; color: #666; font-size: 14px;">Upload 1000+ items at once using CSV files</p>
+                </div>
+
+                <div class="bulk-upload-container">
+                    <!-- Dictionary Upload -->
+                    <div class="upload-card" style="border-left: 4px solid #2196F3;">
+                        <h3>📚 Dictionary Words</h3>
+                        <p>Upload 1000+ words at once</p>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <button type="button" onclick="downloadTemplate('dictionary')" class="btn btn-secondary">
+                                📥 Download CSV Template
+                            </button>
+                        </div>
+                        
+                        <form id="upload-dictionary-form" class="upload-form">
+                            <label for="dictionary-file" style="display: block; margin-bottom: 10px; font-weight: 600;">
+                                Select CSV File:
+                            </label>
+                            <input type="file" id="dictionary-file" accept=".csv" required style="margin-bottom: 15px;">
+                            
+                            <button type="button" onclick="validateBeforeUpload('dictionary')" class="btn btn-info">
+                                🔍 Validate & Check Duplicates
+                            </button>
+                            
+                            <button type="submit" class="btn btn-primary" id="upload-dictionary-btn" disabled>
+                                ⬆️ Upload to Database
+                            </button>
+                        </form>
+                        
+                        <div id="dictionary-validation" class="validation-result"></div>
+                        <div id="dictionary-result" class="upload-result"></div>
+                    </div>
+
+                    <!-- Phrases Upload -->
+                    <div class="upload-card" style="border-left: 4px solid #4CAF50;">
+                        <h3>💬 Phrases</h3>
+                        <p>Upload survival phrases</p>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <button type="button" onclick="downloadTemplate('phrases')" class="btn btn-secondary">
+                                📥 Download CSV Template
+                            </button>
+                        </div>
+                        
+                        <form id="upload-phrases-form" class="upload-form">
+                            <label for="phrases-file" style="display: block; margin-bottom: 10px; font-weight: 600;">
+                                Select CSV File:
+                            </label>
+                            <input type="file" id="phrases-file" accept=".csv" required style="margin-bottom: 15px;">
+                            
+                            <button type="button" onclick="validateBeforeUpload('phrases')" class="btn btn-info">
+                                🔍 Validate & Check Duplicates
+                            </button>
+                            
+                            <button type="submit" class="btn btn-primary" id="upload-phrases-btn" disabled>
+                                ⬆️ Upload to Database
+                            </button>
+                        </form>
+                        
+                        <div id="phrases-validation" class="validation-result"></div>
+                        <div id="phrases-result" class="upload-result"></div>
+                    </div>
+
+                    <!-- Alphabet Upload -->
+                    <div class="upload-card" style="border-left: 4px solid #FF9800;">
+                        <h3>🔤 Alphabet</h3>
+                        <p>Upload Nepali letters</p>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <button type="button" onclick="downloadTemplate('alphabet')" class="btn btn-secondary">
+                                📥 Download CSV Template
+                            </button>
+                        </div>
+                        
+                        <form id="upload-alphabet-form" class="upload-form">
+                            <label for="alphabet-file" style="display: block; margin-bottom: 10px; font-weight: 600;">
+                                Select CSV File:
+                            </label>
+                            <input type="file" id="alphabet-file" accept=".csv" required style="margin-bottom: 15px;">
+                            
+                            <button type="button" onclick="validateBeforeUpload('alphabet')" class="btn btn-info">
+                                🔍 Validate & Check Duplicates
+                            </button>
+                            
+                            <button type="submit" class="btn btn-primary" id="upload-alphabet-btn" disabled>
+                                ⬆️ Upload to Database
+                            </button>
+                        </form>
+                        
+                        <div id="alphabet-validation" class="validation-result"></div>
+                        <div id="alphabet-result" class="upload-result"></div>
+                    </div>
+
+                    <!-- Videos Upload -->
+                    <div class="upload-card" style="border-left: 4px solid #E91E63;">
+                        <h3>🎥 Videos</h3>
+                        <p>Upload YouTube video list</p>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <button type="button" onclick="downloadTemplate('videos')" class="btn btn-secondary">
+                                📥 Download CSV Template
+                            </button>
+                        </div>
+                        
+                        <form id="upload-videos-form" class="upload-form">
+                            <label for="videos-file" style="display: block; margin-bottom: 10px; font-weight: 600;">
+                                Select CSV File:
+                            </label>
+                            <input type="file" id="videos-file" accept=".csv" required style="margin-bottom: 15px;">
+                            
+                            <button type="button" onclick="validateBeforeUpload('videos')" class="btn btn-info">
+                                🔍 Validate & Check Duplicates
+                            </button>
+                            
+                            <button type="submit" class="btn btn-primary" id="upload-videos-btn" disabled>
+                                ⬆️ Upload to Database
+                            </button>
+                        </form>
+                        
+                        <div id="videos-validation" class="validation-result"></div>
+                        <div id="videos-result" class="upload-result"></div>
+
+                        <!-- Video Preview Section -->
+                        <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #f0f0f0;">
+                            <h4 style="margin-bottom: 15px; color: var(--secondary-color);">🔗 Preview Video</h4>
+                            <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">
+                                Paste a YouTube URL to preview the video
+                            </p>
+                            
+                            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                                <input type="text" id="video-preview-url" placeholder="https://www.youtube.com/watch?v=..." 
+                                       style="flex: 1; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.9rem;">
+                                <button type="button" onclick="previewVideo()" class="btn btn-primary" style="white-space: nowrap;">
+                                    📺 Preview
+                                </button>
+                            </div>
+                            
+                            <div id="video-preview-container" style="display: none; margin-top: 15px;">
+                                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                    <iframe id="video-preview-iframe" 
+                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                            allowfullscreen>
+                                    </iframe>
+                                </div>
+                                <p style="margin-top: 10px; font-size: 0.85rem; color: #666; text-align: center;">
+                                    Video ID: <span id="video-id-display" style="font-weight: 600; color: var(--primary-color);"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for Adding/Editing Phrase -->
+    <div id="phrase-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="phrase-modal-close">&times;</span>
+            <h2 id="modal-title">Add New Phrase</h2>
+            <form id="phrase-form">
+                <div class="form-group">
+                    <label for="phrase-nepali">Nepali Text:</label>
+                    <input type="text" id="phrase-nepali" required>
+                </div>
+                <div class="form-group">
+                    <label for="phrase-romanized">Romanized:</label>
+                    <input type="text" id="phrase-romanized" required>
+                </div>
+                <div class="form-group">
+                    <label for="phrase-english">English Translation:</label>
+                    <input type="text" id="phrase-english" required>
+                </div>
+                <div class="form-group">
+                    <label for="phrase-category">Category:</label>
+                    <select id="phrase-category" required>
+                        <option value="">Select Category</option>
+                        <option value="greetings">Greetings</option>
+                        <option value="emergency">Emergency</option>
+                        <option value="food">Food</option>
+                        <option value="directions">Directions</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="phrase-context">Context (Optional):</label>
+                    <input type="text" id="phrase-context" placeholder="e.g., restaurant, travel, shopping">
+                </div>
+                <div class="form-group">
+                    <label for="phrase-formality">Formality Level:</label>
+                    <select id="phrase-formality">
+                        <option value="casual">Casual</option>
+                        <option value="neutral">Neutral</option>
+                        <option value="formal">Formal</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Phrase</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for Adding/Editing Letter -->
+    <!-- Modal for Adding/Editing Letter -->
+    <div id="letter-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="letter-modal-title">Add New Letter</h3>
+                <button class="modal-close" id="letter-modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="letter-form">
+                    <div class="form-group">
+                        <label for="letter-devanagari">Devanagari:</label>
+                        <input type="text" id="letter-devanagari" required class="devanagari-input" style="font-family: 'Noto Sans Devanagari', sans-serif; font-size: 1.2rem;">
+                    </div>
+                    <div class="form-group">
+                        <label for="letter-romanized">Romanized:</label>
+                        <input type="text" id="letter-romanized" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="letter-type">Type:</label>
+                        <select id="letter-type" required>
+                            <option value="">Select Type</option>
+                            <option value="vowel">Vowel</option>
+                            <option value="consonant">Consonant</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="letter-pronunciation">Pronunciation:</label>
+                        <input type="text" id="letter-pronunciation" placeholder="Example pronunciation">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="letter-modal-cancel">Cancel</button>
+                <button type="button" class="btn btn-primary" id="letter-save-btn">Save Letter</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Adding/Editing Word -->
+    <div id="word-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="word-modal-close">&times;</span>
+            <h2 id="word-modal-title">Add New Word</h2>
+            <div style="background: #e3f2fd; padding: 12px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #1976d2;">
+                <strong>ℹ️ Note:</strong> The Nepali (Devanagari) text must be unique. If you're fixing a typo, make sure no other word uses the corrected text.
+            </div>
+            <form id="word-form">
+                <input type="hidden" id="word-id">
+                <div class="form-group">
+                    <label for="word-nepali">Nepali (Devanagari): *</label>
+                    <input type="text" id="word-nepali" required style="font-family: 'Noto Sans Devanagari', sans-serif; font-size: 18px;">
+                    <small style="color: #666;">Enter the correct Devanagari script</small>
+                </div>
+                <div class="form-group">
+                    <label for="word-romanized">Romanized: *</label>
+                    <input type="text" id="word-romanized" required>
+                </div>
+                <div class="form-group">
+                    <label for="word-english">English Translation: *</label>
+                    <input type="text" id="word-english" required>
+                </div>
+                <div class="form-group">
+                    <label for="word-category">Category:</label>
+                    <select id="word-category">
+                        <option value="general">General</option>
+                        <option value="alphabet">Alphabet</option>
+                        <option value="family">Family</option>
+                        <option value="food">Food</option>
+                        <option value="numbers">Numbers</option>
+                        <option value="nature">Nature</option>
+                        <option value="animals">Animals</option>
+                        <option value="colors">Colors</option>
+                        <option value="verbs">Verbs</option>
+                        <option value="adjectives">Adjectives</option>
+                        <option value="education">Education</option>
+                        <option value="transport">Transport</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="word-difficulty">Difficulty Level:</label>
+                    <select id="word-difficulty">
+                        <option value="1">Beginner</option>
+                        <option value="2">Intermediate</option>
+                        <option value="3">Advanced</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="word-part-of-speech">Part of Speech:</label>
+                    <input type="text" id="word-part-of-speech" placeholder="noun, verb, adjective, etc.">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="word-modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Word</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Global Search Modal -->
+    <div id="global-search-modal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <span class="close" id="global-search-close">&times;</span>
+            <h2>🔍 Global Search</h2>
+            <p>Search across Dictionary, Alphabet, and Phrases</p>
+            <div class="form-group">
+                <input type="text" id="global-search-input" placeholder="Search all content..." style="font-size: 1.1rem; padding: 0.8rem;">
+            </div>
+            <div id="global-search-results">
+                <p class="text-center" style="color: #888;">Enter a search query to see results</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Dashboard Modal -->
+    <div id="statistics-modal" class="modal">
+        <div class="modal-content" style="max-width: 900px;">
+            <span class="close" id="statistics-close">&times;</span>
+            <h2>📊 Statistics Dashboard</h2>
+            <div id="statistics-content">
+                <p class="text-center">Loading statistics...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Operations Modal -->
+    <div id="bulk-operations-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="bulk-operations-close">&times;</span>
+            <h2>📦 Bulk Operations</h2>
+            <p>Select operation and IDs to perform bulk actions</p>
+            <form id="bulk-operations-form">
+                <div class="form-group">
+                    <label>Operation:</label>
+                    <select id="bulk-operation-type">
+                        <option value="">Select Operation</option>
+                        <option value="delete">Delete Selected Items</option>
+                        <option value="update-category">Update Category</option>
+                        <option value="update-difficulty">Update Difficulty</option>
+                    </select>
+                </div>
+                <div class="form-group" id="bulk-category-group" style="display:none;">
+                    <label>New Category:</label>
+                    <input type="text" id="bulk-new-category" placeholder="Enter category name">
+                </div>
+                <div class="form-group" id="bulk-difficulty-group" style="display:none;">
+                    <label>New Difficulty:</label>
+                    <select id="bulk-new-difficulty">
+                        <option value="1">Beginner</option>
+                        <option value="2">Intermediate</option>
+                        <option value="3">Advanced</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Item IDs (comma-separated):</label>
+                    <textarea id="bulk-ids" rows="3" placeholder="e.g., 1, 2, 3, 4, 5"></textarea>
+                    <small>Enter the IDs of dictionary items to modify</small>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="bulk-operations-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Execute</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/js/admin.js"></script>
+
+</body>
+</html>

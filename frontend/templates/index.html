@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>नेपाली सिकौं - Learn Nepali</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <h1 class="logo">नेपाली सिकौं</h1>
+                <p class="tagline">Learn Nepali</p>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#alphabet" class="nav-link">Alphabet</a></li>
+                <li><a href="#phrases" class="nav-link">Phrases</a></li>
+                <li><a href="#dictionary" class="nav-link">Dictionary</a></li>
+                <li><a href="#videos" class="nav-link">Videos</a></li>
+                <li><a href="#transliterator" class="nav-link">Converter</a></li>
+                <li><a href="/admin" class="nav-link admin-link">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <h2 class="hero-title slide-in">Master Nepali Language</h2>
+                <p class="hero-subtitle fade-in">Start your journey to learn one of the world's most beautiful languages</p>
+                <div class="hero-buttons">
+                    <a href="#alphabet" class="btn btn-primary pulse">Start Learning</a>
+                    <a href="#phrases" class="btn btn-secondary">Common Phrases</a>
+                </div>
+            </div>
+            <div class="hero-illustration">
+                <div class="floating-shapes">
+                    <div class="shape shape-1">अ</div>
+                    <div class="shape shape-2">क</div>
+                    <div class="shape shape-3">ज्ञ</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alphabet Section -->
+        <section id="alphabet" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Devanagari Alphabet</h2>
+                <p class="section-subtitle">Learn the beautiful script of Nepal</p>
+            </div>
+            <div class="alphabet-filters filter-tabs">
+                <button class="filter-btn active" data-type="all">All Letters</button>
+                <button class="filter-btn" data-type="vowel">Vowels</button>
+                <button class="filter-btn" data-type="consonant">Consonants</button>
+            </div>
+            <div id="alphabet-grid" class="alphabet-grid">
+                <!-- Alphabet cards will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Phrases Section -->
+        <section id="phrases" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Essential Phrases</h2>
+                <p class="section-subtitle">Practical phrases for daily conversation</p>
+            </div>
+            <div class="phrases-controls">
+                <select id="category-filter" class="control-input">
+                    <option value="">All Categories</option>
+                </select>
+                <input type="text" id="phrase-search" class="control-input" placeholder="Search phrases...">
+            </div>
+            <div id="phrases-container" class="phrases-container">
+                <!-- Phrases will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Transliterator Section -->
+        <section id="transliterator" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Romanized → Devanagari Converter</h2>
+                <p class="section-subtitle">Convert romanized text to Devanagari script</p>
+            </div>
+            <div class="transliterator-container">
+                <div class="input-group">
+                    <label for="roman-input">Type in Romanized Nepali:</label>
+                    <textarea id="roman-input" class="textarea-input" placeholder="Type here... (e.g.: namaste, dhanyabad)"></textarea>
+                </div>
+                <button id="convert-btn" class="btn btn-primary">Convert</button>
+                <div class="input-group">
+                    <label for="devanagari-output">Devanagari Output:</label>
+                    <div id="devanagari-output" class="output-box"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dictionary Section -->
+        <section id="dictionary" class="section">
+            <div class="section-header">
+                <h2 class="section-title">📚 Dictionary</h2>
+                <p class="section-subtitle">Browse our comprehensive word collection</p>
+            </div>
+            <div class="phrases-controls">
+                <select id="dict-category-filter" class="control-input">
+                    <option value="">All Categories</option>
+                    <!-- Categories will be loaded dynamically -->
+                </select>
+                <select id="dict-difficulty-filter" class="control-input">
+                    <option value="">All Levels</option>
+                    <option value="1">Beginner</option>
+                    <option value="2">Intermediate</option>
+                    <option value="3">Advanced</option>
+                </select>
+                <input type="text" id="dict-search" class="control-input" placeholder="Search words...">
+            </div>
+            <div id="dictionary-grid" class="dictionary-grid">
+                <!-- Dictionary words will be loaded here -->
+            </div>
+            <div id="dict-pagination" class="pagination-controls">
+                <!-- Pagination will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Videos Section -->
+        <section id="videos" class="section">
+            <div class="section-header">
+                <h2 class="section-title">🎥 Learning Videos</h2>
+                <p class="section-subtitle">Watch and learn from curated YouTube content</p>
+            </div>
+            <div class="phrases-controls">
+                <select id="video-category-filter" class="control-input">
+                    <option value="">All Categories</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="grammar">Grammar</option>
+                    <option value="conversation">Conversation</option>
+                    <option value="pronunciation">Pronunciation</option>
+                    <option value="vocabulary">Vocabulary</option>
+                </select>
+                <input type="text" id="video-search" class="control-input" placeholder="Search videos...">
+            </div>
+            <div id="videos-grid" class="videos-grid">
+                <!-- Videos will be loaded here -->
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

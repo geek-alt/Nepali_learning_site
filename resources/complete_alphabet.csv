@@ -1,0 +1,49 @@
+devanagari,romanized,sound,type,pronunciation,audio_url,order_index
+अ,a,a,vowel,like 'a' in about,,1
+आ,aa,aa,vowel,like 'a' in father,,2
+इ,i,i,vowel,like 'i' in it,,3
+ई,ii,ii,vowel,like 'ee' in feel,,4
+उ,u,u,vowel,like 'u' in put,,5
+ऊ,uu,uu,vowel,like 'oo' in food,,6
+ऋ,ri,ri,vowel,like 'ri' in rick,,7
+ए,e,e,vowel,like 'a' in ate,,8
+ऐ,ai,ai,vowel,like 'ai' in aisle,,9
+ओ,o,o,vowel,like 'o' in go,,10
+औ,au,au,vowel,like 'ou' in out,,11
+अं,am,am,vowel,nasalized 'a',,12
+क,ka,ka,consonant,like 'k' in king,,13
+ख,kha,kha,consonant,aspirated 'k',,14
+ग,ga,ga,consonant,like 'g' in go,,15
+घ,gha,gha,consonant,aspirated 'g',,16
+ङ,nga,nga,consonant,like 'ng' in sing,,17
+च,cha,cha,consonant,like 'ch' in church,,18
+छ,chha,chha,consonant,aspirated 'ch',,19
+ज,ja,ja,consonant,like 'j' in jump,,20
+झ,jha,jha,consonant,aspirated 'j',,21
+ञ,nya,nya,consonant,like 'ny' in canyon,,22
+ट,ta,ta,consonant,retroflex 't',,23
+ठ,tha,tha,consonant,aspirated retroflex 't',,24
+ड,da,da,consonant,retroflex 'd',,25
+ढ,dha,dha,consonant,aspirated retroflex 'd',,26
+ण,na,na,consonant,retroflex 'n',,27
+त,ta,ta,consonant,dental 't',,28
+थ,tha,tha,consonant,aspirated dental 't',,29
+द,da,da,consonant,dental 'd',,30
+ध,dha,dha,consonant,aspirated dental 'd',,31
+न,na,na,consonant,dental 'n',,32
+प,pa,pa,consonant,like 'p' in pin,,33
+फ,pha,pha,consonant,aspirated 'p',,34
+ब,ba,ba,consonant,like 'b' in bat,,35
+भ,bha,bha,consonant,aspirated 'b',,36
+म,ma,ma,consonant,like 'm' in man,,37
+य,ya,ya,consonant,like 'y' in yes,,38
+र,ra,ra,consonant,like 'r' in rat,,39
+ल,la,la,consonant,like 'l' in lamp,,40
+व,wa,wa,consonant,like 'w' in water,,41
+श,sha,sha,consonant,like 'sh' in ship,,42
+ष,sha,sha,consonant,retroflex 'sh',,43
+स,sa,sa,consonant,like 's' in sun,,44
+ह,ha,ha,consonant,like 'h' in hat,,45
+क्ष,ksha,ksha,consonant,compound 'ksh',,46
+त्र,tra,tra,consonant,compound 'tr',,47
+ज्ञ,gya,gya,consonant,compound 'gy',,48
